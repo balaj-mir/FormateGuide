@@ -1,0 +1,67 @@
+{
+  "id": "fast-nuces-fyp-v1",
+  "name": "FAST-NUCES FYP",
+  "description": "FAST National University of Computer & Emerging Sciences FYP formatting guidelines with wider left margin for binding.",
+  "version": "1.0",
+  "institution": "FAST-NUCES",
+  "is_public": true,
+  "rules": {
+    "page_setup": {
+      "paper_size": "A4",
+      "orientation": "portrait",
+      "margin_top_cm": 2.5,
+      "margin_bottom_cm": 2.5,
+      "margin_left_cm": 3.5,
+      "margin_right_cm": 2.5,
+      "severity": "critical",
+      "enabled": true
+    },
+    "body_text": {
+      "font_family": "Times New Roman",
+      "font_size_pt": 12,
+      "font_size_tolerance_pt": 0.5,
+      "line_spacing": 1.5,
+      "alignment": "justified",
+      "bold": false,
+      "italic": false,
+      "severity": "critical",
+      "enabled": true
+    },
+    "heading_1": {
+      "font_family": "Times New Roman",
+      "font_size_pt": 14,
+      "bold": true,
+      "italic": false,
+      "alignment": "center",
+      "severity": "critical",
+      "enabled": true
+    },
+    "heading_2": {
+      "font_family": "Times New Roman",
+      "font_size_pt": 12,
+      "bold": true,
+      "italic": false,
+      "alignment": "left",
+      "severity": "warning",
+      "enabled": true
+    },
+    "page_numbers": {
+      "position": "bottom_center",
+      "format": "arabic",
+      "start_page": 1,
+      "severity": "warning",
+      "enabled": true
+    },
+    "references": {
+      "style": "IEEE",
+      "required": true,
+      "severity": "critical",
+      "enabled": true
+    },
+    "table_of_contents": {
+      "required": true,
+      "severity": "critical",
+      "enabled": true
+    }
+  }
+}

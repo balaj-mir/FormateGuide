@@ -1,0 +1,93 @@
+{
+  "id": "hec-pakistan-thesis-v1",
+  "name": "HEC Pakistan Thesis Guidelines",
+  "description": "Higher Education Commission (HEC) Pakistan thesis/dissertation formatting guidelines. Covers all Pakistani university thesis requirements with Roman numeral front matter.",
+  "version": "1.0",
+  "institution": "HEC Pakistan",
+  "is_public": true,
+  "rules": {
+    "page_setup": {
+      "paper_size": "A4",
+      "orientation": "portrait",
+      "margin_top_cm": 2.54,
+      "margin_bottom_cm": 2.54,
+      "margin_left_cm": 3.81,
+      "margin_right_cm": 2.54,
+      "severity": "critical",
+      "enabled": true
+    },
+    "body_text": {
+      "font_family": "Times New Roman",
+      "font_size_pt": 12,
+      "font_size_tolerance_pt": 0.5,
+      "line_spacing": 2.0,
+      "alignment": "justified",
+      "bold": false,
+      "italic": false,
+      "severity": "critical",
+      "enabled": true
+    },
+    "heading_1": {
+      "font_family": "Times New Roman",
+      "font_size_pt": 14,
+      "bold": true,
+      "italic": false,
+      "alignment": "center",
+      "numbering_format": "CHAPTER {n}: {TITLE}",
+      "severity": "critical",
+      "enabled": true
+    },
+    "heading_2": {
+      "font_family": "Times New Roman",
+      "font_size_pt": 12,
+      "bold": true,
+      "italic": false,
+      "alignment": "left",
+      "severity": "warning",
+      "enabled": true
+    },
+    "heading_3": {
+      "font_family": "Times New Roman",
+      "font_size_pt": 12,
+      "bold": true,
+      "italic": true,
+      "alignment": "left",
+      "severity": "suggestion",
+      "enabled": true
+    },
+    "page_numbers": {
+      "position": "bottom_center",
+      "format": "arabic",
+      "front_matter_format": "roman",
+      "start_page": 1,
+      "severity": "warning",
+      "enabled": true
+    },
+    "references": {
+      "style": "IEEE",
+      "required": true,
+      "severity": "critical",
+      "enabled": true
+    },
+    "table_of_contents": {
+      "required": true,
+      "severity": "critical",
+      "enabled": true
+    },
+    "cover_page": {
+      "required_fields": [
+        "university_name",
+        "department",
+        "thesis_title",
+        "student_name",
+        "registration_number",
+        "supervisor_name",
+        "co_supervisor_name",
+        "degree_name",
+        "year"
+      ],
+      "severity": "critical",
+      "enabled": true
+    }
+  }
+}

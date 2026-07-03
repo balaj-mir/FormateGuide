@@ -1,0 +1,62 @@
+{
+  "id": "harvard-ref-v1",
+  "name": "Harvard Reference Style",
+  "description": "Harvard referencing style formatting guidelines with author-date in-text citations.",
+  "version": "1.0",
+  "institution": "Harvard",
+  "is_public": true,
+  "rules": {
+    "page_setup": {
+      "paper_size": "A4",
+      "orientation": "portrait",
+      "margin_top_cm": 2.54,
+      "margin_bottom_cm": 2.54,
+      "margin_left_cm": 2.54,
+      "margin_right_cm": 2.54,
+      "severity": "critical",
+      "enabled": true
+    },
+    "body_text": {
+      "font_family": "Times New Roman",
+      "font_size_pt": 12,
+      "font_size_tolerance_pt": 0.5,
+      "line_spacing": 1.5,
+      "alignment": "justified",
+      "bold": false,
+      "italic": false,
+      "severity": "critical",
+      "enabled": true
+    },
+    "heading_1": {
+      "font_family": "Times New Roman",
+      "font_size_pt": 14,
+      "bold": true,
+      "italic": false,
+      "alignment": "left",
+      "severity": "critical",
+      "enabled": true
+    },
+    "heading_2": {
+      "font_family": "Times New Roman",
+      "font_size_pt": 12,
+      "bold": true,
+      "italic": false,
+      "alignment": "left",
+      "severity": "warning",
+      "enabled": true
+    },
+    "page_numbers": {
+      "position": "bottom_center",
+      "format": "arabic",
+      "start_page": 1,
+      "severity": "warning",
+      "enabled": true
+    },
+    "references": {
+      "style": "Harvard",
+      "required": true,
+      "severity": "critical",
+      "enabled": true
+    }
+  }
+}
