@@ -1,11 +1,13 @@
 # 🛡️ FormatGuard — The Turnitin for Academic & Institutional Formatting Compliance
 
-[![Next.js 16](https://img.shields.io/badge/Next.js-16-black?style=for-the-badge&logo=next.js&logoColor=white)](https://nextjs.org/)
-[![React 19](https://img.shields.io/badge/React-19-blue?style=for-the-badge&logo=react&logoColor=white)](https://react.dev/)
-[![FastAPI](https://img.shields.io/badge/FastAPI-0.110+-009688?style=for-the-badge&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
-[![Python 3.12](https://img.shields.io/badge/Python-3.12-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://python.org/)
-[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Supabase-316192?style=for-the-badge&logo=postgresql&logoColor=white)](https://supabase.com/)
-[![Docker](https://img.shields.io/badge/Docker-Enabled-2496ED?style=for-the-badge&logo=docker&logoColor=white)](https://docker.com/)
+<p align="center">
+  <a href="https://nextjs.org"><img src="https://img.shields.io/badge/Next.js-16-black?style=for-the-badge&logo=next.js&logoColor=white" alt="Next.js 16" /></a>
+  <a href="https://react.dev"><img src="https://img.shields.io/badge/React-19-blue?style=for-the-badge&logo=react&logoColor=white" alt="React 19" /></a>
+  <a href="https://fastapi.tiangolo.com"><img src="https://img.shields.io/badge/FastAPI-0.110+-009688?style=for-the-badge&logo=fastapi&logoColor=white" alt="FastAPI" /></a>
+  <a href="https://python.org"><img src="https://img.shields.io/badge/Python-3.12-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python 3.12" /></a>
+  <a href="https://supabase.com"><img src="https://img.shields.io/badge/PostgreSQL-Supabase-316192?style=for-the-badge&logo=postgresql&logoColor=white" alt="PostgreSQL" /></a>
+  <a href="https://docker.com"><img src="https://img.shields.io/badge/Docker-Enabled-2496ED?style=for-the-badge&logo=docker&logoColor=white" alt="Docker" /></a>
+</p>
 
 > **FormatGuard** is an enterprise-grade end-to-end web platform engineered to eliminate document formatting non-compliance in academic theses, research dissertations, and corporate reports. It automatically inspects Word documents (`.docx`), verifies compliance against institutional rulesets, generates detailed PDF compliance reports, and produces auto-corrected Word documents with tracked changes.
 
@@ -20,10 +22,10 @@
 - [Project Directory Structure](#-project-directory-structure)
 - [Role-Based Access Control (RBAC) Matrix](#-role-based-access-control-rbac-matrix)
 - [Local Development & Setup Guide](#-local-development--setup-guide)
-  - [Prerequisites](#1-prerequisites)
-  - [Environment Variables Setup](#2-environment-variables-setup)
-  - [Running with Docker Compose (Recommended)](#3-running-with-docker-compose-recommended)
-  - [Running Manually (Without Docker)](#4-running-manually-without-docker)
+  - [1. Prerequisites](#1-prerequisites)
+  - [2. Environment Variables Setup](#2-environment-variables-setup)
+  - [3. Running with Docker Compose (Recommended)](#3-running-with-docker-compose-recommended)
+  - [4. Running Manually (Without Docker)](#4-running-manually-without-docker)
 - [API Reference & Endpoints](#-api-reference--endpoints)
 - [Security & Compliance](#-security--compliance)
 - [License & Contributing](#-license--contributing)
@@ -60,6 +62,7 @@ In universities and research institutions worldwide, formatting verification for
 ## 🛠️ Technology Stack & Tools
 
 ### **Frontend Architecture**
+
 | Component | Technology / Library | Description |
 | :--- | :--- | :--- |
 | **Framework** | Next.js 16 (App Router) | Modern server-side rendered React framework with optimized routing. |
@@ -69,6 +72,7 @@ In universities and research institutions worldwide, formatting verification for
 | **Icons & UI Components** | Lucide React & Radix UI | Clean, accessible icon sets and headless UI primitives. |
 
 ### **Backend Architecture**
+
 | Component | Technology / Library | Description |
 | :--- | :--- | :--- |
 | **API Framework** | FastAPI (Python 3.12) | High-performance asynchronous REST API with automatic OpenAPI docs. |
@@ -79,6 +83,7 @@ In universities and research institutions worldwide, formatting verification for
 | **Monitoring** | Flower & Structlog | Real-time Celery task dashboard and JSON structured logging. |
 
 ### **Document Processing & Cloud Infrastructure**
+
 | Component | Technology / Library | Description |
 | :--- | :--- | :--- |
 | **DOCX Parsing & XML** | `python-docx` & `lxml` | Direct manipulation of Word OpenXML document structures. |
@@ -233,20 +238,21 @@ FormatGuard/
 FormatGuard implements granular permission controls to support institutional workflows:
 
 | Feature / Capability | 🟢 Free Student | 🔵 Premium Student | 🟣 Faculty Reviewer | 🔴 Institutional Admin |
-| :--- | :center: | :center: | :center: | :center: |
+| :--- | :---: | :---: | :---: | :---: |
 | **Monthly Document Uploads** | 5 docs / month | Unlimited | Unlimited | Unlimited |
 | **Standard Ruleset Verification** | ✔️ Yes | ✔️ Yes | ✔️ Yes | ✔️ Yes |
 | **PDF Compliance Report Download** | ✔️ Basic Summary | ✔️ Full Detail PDF | ✔️ Full Detail PDF | ✔️ Full Detail PDF |
 | **Tracked-Changes Auto-Correction** | ❌ No | ✔️ Yes | ✔️ Yes | ✔️ Yes |
 | **Batch Document Review** | ❌ No | ❌ No | ✔️ Yes | ✔️ Yes |
-| **Create / Modify Institutional Rulesets**| ❌ No | ❌ No | ❌ No | ✔️ Yes |
-| **Manage Users & System Analytics** | ❌ No | ❌ No | ❌ No | ✔️ Yes |
+| **Create / Modify Rulesets** | ❌ No | ❌ No | ❌ No | ✔️ Yes |
+| **Manage Users & Analytics** | ❌ No | ❌ No | ❌ No | ✔️ Yes |
 
 ---
 
 ## 💻 Local Development & Setup Guide
 
 ### 1. Prerequisites
+
 Ensure you have the following software installed on your system:
 * **Docker & Docker Compose** (v2.20+ recommended)
 * **Node.js** (v18+ or v20 LTS) & **npm**
@@ -254,6 +260,7 @@ Ensure you have the following software installed on your system:
 * **Git**
 
 ### 2. Environment Variables Setup
+
 Create `.env` files in both the `backend/` and `frontend/` directories by copying from their respective examples:
 
 #### **Backend Configuration (`backend/.env`)**
@@ -288,6 +295,7 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
 ---
 
 ### 3. Running with Docker Compose (Recommended)
+
 The fastest way to launch the complete backend stack (FastAPI, Celery Worker, Redis Broker, and Flower Dashboard) is via Docker Compose:
 
 1. **Open a terminal in the project root directory**:
@@ -322,6 +330,7 @@ The fastest way to launch the complete backend stack (FastAPI, Celery Worker, Re
 ---
 
 ### 4. Running Manually (Without Docker)
+
 If you prefer running services natively on your host machine:
 
 1. **Start a Local Redis Server**: Ensure Redis is running on port `6379`.
@@ -367,8 +376,9 @@ When the backend server is running, interactive OpenAPI documentation is automat
 
 ## 🔒 Security & Compliance
 
-FormatGuard adheres to strict academic integrity and data privacy standards:
-* **Zero Textual Alteration Guarantee**: The auto-correction engine strictly modifies XML presentation attributes (`w:rPr`, `w:pPr`, margins, line spacing) and **never** alters, deletes, or modifies user text, citations, or data.
+> [!IMPORTANT]
+> **Zero Textual Alteration Guarantee**: The auto-correction engine strictly modifies XML presentation attributes (`w:rPr`, `w:pPr`, margins, line spacing) and **never** alters, deletes, or modifies user text, citations, or data.
+
 * **Transient Cloud Storage**: Uploaded documents are stored using cryptographically secure UUIDs in private S3/R2 buckets. Access is restricted exclusively via time-limited, pre-signed URLs.
 * **Stateless Authentication**: All API requests are verified using signed JWT Bearer tokens issued by Supabase Auth with strict CORS policy enforcement.
 
