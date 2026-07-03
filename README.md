@@ -136,9 +136,50 @@ graph TD
 
 ---
 
-## 🔄 Document Processing Workflow
+## 🔄 Complete System & Lifecycle Workflows
 
-When a user submits a thesis or report for compliance verification, the platform executes the following automated pipeline:
+FormatGuard manages the entire academic formatting lifecycle—from initial institutional ruleset configuration to student submission, automated XML remediation, and faculty compliance certification.
+
+### **1. End-to-End User & Operational Lifecycle**
+
+The flowchart below illustrates how users interact across the system's operational phases:
+
+```mermaid
+graph TD
+    subgraph Phase 1: Onboarding & Configuration
+        ADMIN[Institutional Admin] -->|Define JSON Formatting Schema| RULES[Pre-built Institutional Rulesets<br/>NUST / IEEE / APA 7th / HEC]
+        USER[Student / Faculty User] -->|Supabase Auth JWT| AUTH[Role & Quota Verification<br/>Free Tier: 5/mo | Premium: Unlimited]
+    end
+
+    subgraph Phase 2: Submission & Ingestion
+        AUTH -->|Select Ruleset & Upload DOCX| UPLOAD[Next.js Upload Dashboard]
+        UPLOAD -->|Store Original DOCX| S3[(AWS S3 / Cloudflare R2)]
+        UPLOAD -->|Dispatch Async Job| QUEUE[Redis Message Queue]
+    end
+
+    subgraph Phase 3: Async XML Processing & Remediation
+        QUEUE -->|Consume Task| WORKER[Celery Worker Engine]
+        WORKER -->|1. Deep XML Inspection| PARSE[Extract w:rPr & w:pPr tags<br/>Fonts, Margins, Spacing, TOC]
+        PARSE -->|2. Ruleset Evaluation| SCORE[Calculate Compliance Score %]
+        SCORE -->|3. Report Generation| PDF[Generate ReportLab Audit PDF]
+        SCORE -->|4. Automated Correction| FIX[Modify XML Formatting Tags<br/>Create Tracked-Changes DOCX]
+        FIX -->|Upload Remedied Files| S3
+    end
+
+    subgraph Phase 4: Review & Audit Certification
+        WORKER -->|Update Submission Record| DB[(PostgreSQL Database)]
+        DB -->|Real-time UI Status Update| DASH[Student Compliance Dashboard]
+        DASH -->|Download Audit Report| RES_PDF[Audit Certificate PDF]
+        DASH -->|Download Corrected DOCX| RES_DOCX[Tracked-Changes Word Doc]
+        RES_DOCX -->|Submit for Final Defense| FACULTY[Faculty Reviewer / Committee]
+    end
+```
+
+---
+
+### **2. Granular Document Processing Pipeline**
+
+When a document is submitted, the backend orchestrates a non-blocking asynchronous pipeline between Next.js, FastAPI, Celery, and storage providers:
 
 ```mermaid
 sequenceDiagram
@@ -173,6 +214,64 @@ sequenceDiagram
     FE->>BE: Poll receives Status: COMPLETED
     FE-->>User: Display Compliance Score, Error Breakdown & Download Links
 ```
+
+---
+
+### **3. Faculty Audit & Institutional Admin Workflow**
+
+FormatGuard empowers universities with administrative oversight and batch auditing tools:
+
+```mermaid
+stateDiagram-v2
+    [*] --> InstitutionalSetup: Admin Configures Department Schema
+    InstitutionalSetup --> StudentSubmission: Students Upload Thesis DOCX
+    StudentSubmission --> AutomatedVerification: Celery Worker Parses XML
+    
+    state AutomatedVerification {
+        [*] --> CheckMargins & Fonts
+        CheckMargins & Fonts --> VerifyHeadings & TOC
+        VerifyHeadings & TOC --> GenerateRemediation
+    }
+    
+    AutomatedVerification --> FacultyReview: Score & Tracked-Changes Generated
+    
+    state FacultyReview {
+        [*] --> InspectAuditPDF
+        InspectAuditPDF --> ReviewTrackedChangesDOCX
+        ReviewTrackedChangesDOCX --> ApprovalDecision
+        ApprovalDecision --> Approved: Score >= 95% (Compliant)
+        ApprovalDecision --> RevisionRequired: Score < 95% (Non-Compliant)
+    }
+    
+    RevisionRequired --> StudentSubmission: Student Re-uploads Corrected Doc
+    Approved --> [*]: Final University Archiving
+```
+
+---
+
+### **4. Step-by-Step Lifecycle Breakdown**
+
+1. **Phase 1: Institutional Onboarding & Schema Setup**
+   * Institutional Administrators upload or configure departmental JSON rulesets (specifying exact typography, line spacing, margins, and citation styles).
+   * Users register via Supabase Auth. Students are assigned a quota tier (Free: 5 uploads/month; Premium/Faculty: Unlimited).
+
+2. **Phase 2: Document Ingestion & Queue Dispatch**
+   * Students drag-and-drop their Word (`.docx`) document into the Next.js dashboard and select their target ruleset (e.g., *NUST FYP 2024* or *IEEE*).
+   * The FastAPI gateway validates file integrity, streams the original file to secure cloud storage (AWS S3 / Cloudflare R2), creates a database tracking record, and pushes a task payload to the **Redis** broker.
+
+3. **Phase 3: Asynchronous Deep XML Verification Engine**
+   * A **Celery** worker dequeues the job and pulls the document from S3.
+   * Using `python-docx` and `lxml`, the worker unpacks the Word OpenXML archive and inspects structural tags (`w:rPr`, `w:pPr`, heading styles, indents, and TOC fields).
+   * The metrics are evaluated against the institutional JSON schema to calculate an overall **Compliance Score Percentage**.
+
+4. **Phase 4: Automated Remediation & Audit Generation**
+   * **PDF Audit Report**: The worker generates a formal, section-by-section compliance breakdown using **ReportLab**, detailing exact margin violations, font size mismatches, and line spacing errors.
+   * **Tracked-Changes Auto-Correction**: The `correction_engine` safely modifies XML formatting attributes without altering user text, producing a clean `.docx` file with Word tracked changes enabled.
+   * Both output files are uploaded to S3, and the PostgreSQL record is marked as `COMPLETED`.
+
+5. **Phase 5: Faculty Audit & Final Certification**
+   * The frontend dashboard updates instantly. The student downloads the corrected `.docx` and PDF audit certificate.
+   * Faculty Reviewers access the institutional dashboard to batch-review student scores, verify audit certificates, and approve documents for final university defense and archiving.
 
 ---
 
